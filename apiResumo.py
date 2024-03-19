@@ -9,7 +9,7 @@ import json
 # import tiktoken
 # import requests
 
-# curl -X POST http://10.32.109.36:5000/resumoPGM requisição da api
+
 
 proxy_url = os.environ.get("OPENAI_PROXY_URL")
 print(proxy_url)
