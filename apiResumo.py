@@ -5,16 +5,20 @@ from flask import Flask, Response, abort
 import os
 import docx2txt
 import json
+from dotenv import dotenv_values
 
 # import tempfile
 # import tiktoken
 # import requests
 
+config = dotenv_values(".env")
 
+proxy_url = config["OPENAI_PROXY_URL"]
+api_key = config["OPENAI_API_KEY"]
 
-proxy_url = os.environ.get("OPENAI_PROXY_URL")
 print(proxy_url)
-client = OpenAI() if proxy_url is None or proxy_url == "" else OpenAI(http_client=httpx.Client(proxy=proxy_url))
+
+client = OpenAI(api_key=api_key,http_client=httpx.Client(proxy=proxy_url))
 
 app = Flask(__name__)
 
