@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\3470622\Desktop\Workspace\apiResumo\openai-env
+set VIRTUAL_ENV=C:\Users\3470622\Desktop\Workspace\pgm testes\apiResumo\openai-env
 
 if not defined PROMPT set PROMPT=$P$G
 

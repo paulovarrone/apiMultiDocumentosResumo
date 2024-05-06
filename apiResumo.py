@@ -5,6 +5,7 @@ from flask import Flask, Response, abort
 import os
 import docx2txt
 import json
+
 # import tempfile
 # import tiktoken
 # import requests
@@ -30,12 +31,26 @@ def extract_text_from_word(word_file):
   word_text = docx2txt.process(word_file)
   return word_text
 
-def extract_text_from_pdf(pdf_file):
-  pdf_text = ""
-  pdf_reader = PyPDF2.PdfReader(pdf_file)
-  for page in pdf_reader.pages:
-    pdf_text += page.extract_text()
-  return pdf_text
+# def extract_text_from_pdf(pdf_file):
+#   pdf_text = ""
+#   pdf_reader = PyPDF2.PdfReader(pdf_file)
+#   for page in pdf_reader.pages:
+#     pdf_text += page.extract_text()
+#     return pdf_text
+
+def extract_text_from_pdf(pdf_path):
+  try:
+
+    text = ""
+
+    with fitz.open(pdf_path) as pdf_file:
+      for page in pdf_file: 
+        text += page.get_text()
+
+    return text
+  
+  except Exception:
+    print("ERRO AO TENTAR EXTRAIR TEXTO")
 
 
 @app.route('/resumoPGM', methods=['GET'])
